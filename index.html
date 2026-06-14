@@ -34,6 +34,7 @@ body{
     right:15px;
     top:15px;
     cursor:pointer;
+    font-size:20px;
 }
 
 .chat-box{
@@ -80,6 +81,10 @@ button{
     cursor:pointer;
 }
 
+button:hover{
+    background:#005fa3;
+}
+
 .dark{
     background:#222;
     color:white;
@@ -109,7 +114,6 @@ button{
 <span class="toggle" onclick="darkMode()">🌙</span>
 </div>
 
-
 <div class="chat-box" id="chat">
 <div class="message bot">
 Hello Traveller! ✈️<br>
@@ -119,241 +123,173 @@ Ask me about:
 • Hotels in Tokyo<br>
 • Weather in Dubai<br>
 • Budget for London 5 days<br>
-• Itinerary for Paris
+• Itinerary for Paris<br>
+• Attractions in New York<br>
+• Hotels in Rome<br>
+• Weather in Singapore<br>
+• Budget for Sydney 4 days<br>
+• Itinerary for Mumbai
 </div>
 </div>
-
 
 <div class="input-area">
-<input id="input" placeholder="Type your travel query...">
+<input
+    id="input"
+    placeholder="Type your travel query..."
+    maxlength="200">
 <button onclick="reply()">Send</button>
 </div>
 
 </div>
-
 
 <script>
 
 const data = {
 
 paris:{
-attraction:
-"🗼 Eiffel Tower<br>🎨 Louvre Museum<br>⛪ Notre Dame Cathedral",
-
-hotel:
-"🏨 Hotel Le Meurice - Luxury<br>🏨 ibis Paris - Budget",
-
-weather:
-"🌤 18°C, Pleasant climate",
-
-itinerary:
-"Day 1: Eiffel Tower<br>Day 2: Louvre Museum<br>Day 3: City walk & shopping"
+attraction:"🗼 Eiffel Tower<br>🎨 Louvre Museum<br>⛪ Notre Dame Cathedral",
+hotel:"🏨 Hotel Le Meurice - Luxury<br>🏨 ibis Paris - Budget",
+weather:"🌤 18°C, Pleasant climate",
+itinerary:"Day 1: Eiffel Tower<br>Day 2: Louvre Museum<br>Day 3: City walk & shopping"
 },
-
 
 tokyo:{
-attraction:
-"🗼 Tokyo Tower<br>⛩ Senso-ji Temple<br>🌸 Shinjuku Garden",
-
-hotel:
-"🏨 Park Hotel Tokyo<br>🏨 APA Hotel Budget",
-
-weather:
-"🌦 22°C, Light rain",
-
-itinerary:
-"Day 1: Temples<br>Day 2: Shopping<br>Day 3: Technology District"
+attraction:"🗼 Tokyo Tower<br>⛩ Senso-ji Temple<br>🌸 Shinjuku Garden",
+hotel:"🏨 Park Hotel Tokyo<br>🏨 APA Hotel Budget",
+weather:"🌦 22°C, Light rain",
+itinerary:"Day 1: Temples<br>Day 2: Shopping<br>Day 3: Technology District"
 },
-
 
 dubai:{
-attraction:
-"🏙 Burj Khalifa<br>🏖 Palm Jumeirah<br>🏜 Desert Safari",
-
-hotel:
-"🏨 Atlantis The Palm<br>🏨 Rove Downtown",
-
-weather:
-"☀ 35°C, Hot",
-
-itinerary:
-"Day 1: Burj Khalifa<br>Day 2: Desert Safari<br>Day 3: Beach"
+attraction:"🏙 Burj Khalifa<br>🏖 Palm Jumeirah<br>🏜 Desert Safari",
+hotel:"🏨 Atlantis The Palm<br>🏨 Rove Downtown",
+weather:"☀ 35°C, Hot",
+itinerary:"Day 1: Burj Khalifa<br>Day 2: Desert Safari<br>Day 3: Beach"
 },
 
-
 london:{
-attraction:
-"🎡 London Eye<br>🏰 Buckingham Palace",
-
-hotel:
-"🏨 The Savoy<br>🏨 Travelodge",
-
-weather:
-"🌧 15°C, Cloudy",
-
-itinerary:
-"Day 1: Palace<br>Day 2: Museums<br>Day 3: Shopping"
-}
+attraction:"🎡 London Eye<br>🏰 Buckingham Palace",
+hotel:"🏨 The Savoy<br>🏨 Travelodge",
+weather:"🌧 15°C, Cloudy",
+itinerary:"Day 1: Palace<br>Day 2: Museums<br>Day 3: Shopping"
+},
 
 newyork:{
-attraction:
-"🗽 Statue of Liberty<br>🌉 Brooklyn Bridge<br>🌳 Central Park",
-
-hotel:
-"🏨 The Plaza Hotel<br>🏨 Pod Times Square",
-
-weather:
-"🌤 20°C, Mild weather",
-
-itinerary:
-"Day 1: Statue of Liberty<br>Day 2: Central Park<br>Day 3: Times Square"
+attraction:"🗽 Statue of Liberty<br>🌉 Brooklyn Bridge<br>🌳 Central Park",
+hotel:"🏨 The Plaza Hotel<br>🏨 Pod Times Square",
+weather:"🌤 20°C, Mild weather",
+itinerary:"Day 1: Statue of Liberty<br>Day 2: Central Park<br>Day 3: Times Square"
 },
 
 rome:{
-attraction:
-"🏛 Colosseum<br>⛪ Vatican City<br>🏺 Roman Forum",
-
-hotel:
-"🏨 Hotel Artemide<br>🏨 B&B Roma",
-
-weather:
-"☀ 25°C, Sunny",
-
-itinerary:
-"Day 1: Colosseum<br>Day 2: Vatican City<br>Day 3: Roman Forum"
+attraction:"🏛 Colosseum<br>⛪ Vatican City<br>🏺 Roman Forum",
+hotel:"🏨 Hotel Artemide<br>🏨 B&B Roma",
+weather:"☀ 25°C, Sunny",
+itinerary:"Day 1: Colosseum<br>Day 2: Vatican City<br>Day 3: Roman Forum"
 },
 
 singapore:{
-attraction:
-"🌳 Gardens by the Bay<br>🦁 Merlion Park<br>🏝 Sentosa Island",
-
-hotel:
-"🏨 Marina Bay Sands<br>🏨 Hotel Boss",
-
-weather:
-"🌦 30°C, Humid",
-
-itinerary:
-"Day 1: Marina Bay<br>Day 2: Sentosa<br>Day 3: City Tour"
+attraction:"🌳 Gardens by the Bay<br>🦁 Merlion Park<br>🏝 Sentosa Island",
+hotel:"🏨 Marina Bay Sands<br>🏨 Hotel Boss",
+weather:"🌦 30°C, Humid",
+itinerary:"Day 1: Marina Bay<br>Day 2: Sentosa<br>Day 3: City Tour"
 },
 
 sydney:{
-attraction:
-"🎭 Sydney Opera House<br>🌉 Harbour Bridge<br>🏖 Bondi Beach",
-
-hotel:
-"🏨 Shangri-La Sydney<br>🏨 ibis Sydney",
-
-weather:
-"🌤 22°C, Pleasant",
-
-itinerary:
-"Day 1: Opera House<br>Day 2: Harbour Bridge<br>Day 3: Bondi Beach"
+attraction:"🎭 Sydney Opera House<br>🌉 Harbour Bridge<br>🏖 Bondi Beach",
+hotel:"🏨 Shangri-La Sydney<br>🏨 ibis Sydney",
+weather:"🌤 22°C, Pleasant",
+itinerary:"Day 1: Opera House<br>Day 2: Harbour Bridge<br>Day 3: Bondi Beach"
 },
 
 mumbai:{
-attraction:
-"🚪 Gateway of India<br>🏝 Marine Drive<br>🏛 Chhatrapati Shivaji Maharaj Terminus",
-
-hotel:
-"🏨 Taj Mahal Palace<br>🏨 Ginger Mumbai",
-
-weather:
-"☀ 32°C, Warm",
-
-itinerary:
-"Day 1: Gateway of India<br>Day 2: Marine Drive<br>Day 3: Local Sightseeing"
+attraction:"🚪 Gateway of India<br>🏝 Marine Drive<br>🏛 Chhatrapati Shivaji Maharaj Terminus",
+hotel:"🏨 Taj Mahal Palace<br>🏨 Ginger Mumbai",
+weather:"☀ 32°C, Warm",
+itinerary:"Day 1: Gateway of India<br>Day 2: Marine Drive<br>Day 3: Local Sightseeing"
 }
 
 };
 
-
 function addMessage(text, type)
 {
-let box=document.getElementById("chat");
+    let box = document.getElementById("chat");
 
-box.innerHTML +=
-"<div class='message "+type+"'>"+text+"</div>";
+    box.innerHTML +=
+    "<div class='message " + type + "'>" + text + "</div>";
 
-box.scrollTop=box.scrollHeight;
+    box.scrollTop = box.scrollHeight;
 }
-
 
 function reply()
 {
+    let input = document.getElementById("input");
+    let text = input.value.trim();
 
-let input=document.getElementById("input");
+    if(text === "")
+    {
+        alert("Please enter a query.");
+        return;
+    }
 
-let text=input.value.toLowerCase();
+    addMessage(text, "user");
 
-if(text=="")
-return;
+    text = text.toLowerCase();
 
-addMessage(input.value,"user");
+    let answer =
+    "Sorry, I don't understand. Try asking about Paris, Tokyo, Dubai, London, New York, Rome, Singapore, Sydney or Mumbai.";
 
+    for(let city in data)
+    {
+        if(text.includes(city))
+        {
+            if(text.includes("hotel"))
+            {
+                answer = data[city].hotel;
+            }
+            else if(text.includes("weather"))
+            {
+                answer = data[city].weather;
+            }
+            else if(text.includes("budget"))
+            {
+                let days = text.match(/\d+/);
 
-let answer="Sorry, I don't understand. Try asking about Paris, Tokyo, Dubai or London.";
+                if(days)
+                {
+                    let cost = days[0] * 150;
 
+                    answer =
+                    "💰 Estimated budget for " +
+                    days[0] +
+                    " days in " +
+                    city.charAt(0).toUpperCase() +
+                    city.slice(1) +
+                    " is $" +
+                    cost +
+                    " (Budget travel)";
+                }
+                else
+                {
+                    answer =
+                    "Please mention number of days. Example: Budget for London 5 days";
+                }
+            }
+            else if(text.includes("itinerary"))
+            {
+                answer = data[city].itinerary;
+            }
+            else
+            {
+                answer = data[city].attraction;
+            }
+        }
+    }
 
-for(let city in data)
-{
+    addMessage(answer, "bot");
 
-if(text.includes(city))
-{
-
-if(text.includes("hotel"))
-answer=data[city].hotel;
-
-
-else if(text.includes("weather"))
-answer=data[city].weather;
-
-
-else if(text.includes("budget"))
-{
-
-let days=text.match(/\d+/);
-
-if(days)
-{
-let cost=days[0]*150;
-answer=
-"💰 Estimated budget for "
-+days[0]+
-" days in "
-+city+
-" is $"
-+cost+
-" (Budget travel)";
+    input.value = "";
 }
-
-else
-{
-answer="Please mention number of days. Example: Budget for London 5 days";
-}
-
-}
-
-
-else if(text.includes("itinerary"))
-answer=data[city].itinerary;
-
-
-else
-answer=data[city].attraction;
-
-}
-
-}
-
-
-addMessage(answer,"bot");
-
-input.value="";
-
-}
-
-
 
 function darkMode()
 {
@@ -371,20 +307,16 @@ function darkMode()
     }
 }
 
-
-// Enter key support
-
 document.getElementById("input")
-.addEventListener("keypress",function(e){
-
-if(e.key==="Enter")
-reply();
-
+.addEventListener("keydown", function(e)
+{
+    if(e.key === "Enter")
+    {
+        reply();
+    }
 });
-
 
 </script>
 
 </body>
-
 </html>
